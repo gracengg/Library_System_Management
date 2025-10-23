@@ -52,15 +52,19 @@ GROUP BY 1,2
 ORDER BY 1 
 
 --Q8. Find Total Rental Income by Category
-SELECT category, SUM(rental_price) as total_rent_income
-FROM books
+SELECT 
+    b.category,
+    SUM(b.rental_price),
+    COUNT(*)
+FROM issued_status as ist
+JOIN books as b
+ON b.isbn = ist.issued_book_isbn
 GROUP BY 1
-ORDER BY 2
 
 --Q9. List Members Who Registered in the Last 180 Days
 SELECT *
 FROM members
-WHERE reg_date = current_date - INTERVAL'180 days'
+WHERE reg_date = current_date - INTERVAL'180 DAYS'
 
 --Q10. List Employees with Their Branch Manager's Name and their branch details
 SELECT e.emp_id, e.emp_name, b.*
@@ -106,6 +110,7 @@ JOIN branch as br USING(branch_id)
 JOIN books as b ON(ist.issued_book_isbn = b.isbn)
 LEFT JOIN return_status as rs USING(issued_id)
 GROUP BY 1
+
 SELECT * FROM branch_reports
 
 --Q15. CTAS: Create a Table of Active Members
@@ -114,5 +119,6 @@ CREATE TABLE active_members AS
 SELECT * FROM members
 WHERE member_id in (SELECT DISTINCT issued_member_id FROM issued_status  
 					WHERE issued_date >= CURRENT_DATE - INTERVAL'2'MONTH)
+
 SELECT * FROM active_members
 
