@@ -236,7 +236,7 @@ USING(issued_id)
 WHERE ret.return_id IS NULL
 ```
 
-**Task 13: Identify Members with Overdue Books**  
+Task 13: **Identify Members with Overdue Books**  
 Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
 
 ```sql
@@ -251,7 +251,7 @@ LEFT JOIN return_status as rs USING(issued_id)
 WHERE rs.return_date IS NULL AND (CURRENT_DATE - ist.issued_date)>30
 ```
 
-**Task 14: Branch Performance Report**  
+Task 14: **Branch Performance Report**  
 Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
 
 ```sql
@@ -270,7 +270,7 @@ GROUP BY 1
 SELECT * FROM branch_reports
 ```
 
-**Task 15: CTAS: Create a Table of Active Members**  
+Task 15: **CTAS: Create a Table of Active Members**  
 Use the CREATE TABLE AS (CTAS) statement to create a new table active_members containing members who have issued at least one book in the last 2 months.
 
 ```sql
