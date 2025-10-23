@@ -295,4 +295,3 @@ This project demonstrates the application of SQL skills in creating and managing
 
 LinkedIn: (https://www.linkedin.com/in/gracee-ngo/)
 
-Thank you for your interest in this project!
